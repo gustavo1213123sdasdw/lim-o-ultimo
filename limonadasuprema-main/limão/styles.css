@@ -1,0 +1,84 @@
+body {
+    background-image: url('imagem/vista-superior-do-arranjo-de-textura-de-fatias-de-limao_23-2149433502.avif');
+    background-size: cover;
+    background-position: center;
+    color: rgb(16, 75, 24); /* Define a cor do texto como verde escuro */
+    text-align: center; /* Centraliza o texto */
+}
+
+.hidden {
+    display: none;
+}
+
+#paginaInicial button,
+#paginaLoja button,
+#paginaPagamento button {
+    margin-top: 20px; /* Espaçamento acima do botão */
+    padding: 15px 30px; /* Aumenta o padding do botão */
+    font-size: 18px; /* Aumenta o tamanho da fonte do botão */
+    background-color: green; /* Define a cor de fundo do botão */
+    color: white; /* Define a cor do texto do botão como branco */
+    border: none; /* Remove a borda do botão */
+    cursor: pointer; /* Adiciona um cursor ao passar o mouse sobre o botão */
+}
+
+.produto {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.produto img {
+    width: 100%; /* Para ocupar a largura do contêiner */
+    height: auto;
+    max-width: 200px; /* Limita a largura máxima */
+}
+
+@media only screen and (min-width: 600px) {
+    .produto {
+        display: inline-block;
+        width: 30%; /* Ajusta a largura dos produtos para exibição em telas maiores */
+        margin-right: 10px;
+    }
+}
+
+#carrinho {
+    text-align: left;
+    margin: 20px auto;
+    max-width: 600px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#carrinho h2 {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#carrinho ul {
+    padding: 0;
+}
+
+#carrinho li {
+    list-style-type: none;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+#carrinho form {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#carrinho form input[type="text"],
+#carrinho form input[type="email"],
+#carrinho form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}

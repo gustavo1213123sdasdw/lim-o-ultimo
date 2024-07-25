@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limestore</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+
+<div id="paginaInicial">
+    <h1>Bem-vindo à Limestore!</h1>
+    <p>Slogan: Se a vida te der limões, faça uma limonada.</p>
+    <button onclick="mostrarPagina('loja')">Visite nossa loja</button>
+</div>
+
+<div id="paginaLoja" class="hidden">
+    <h1>Limestore - Nossa Seleção de Limões</h1>
+    <div class="produto">
+        <img src="imagem/download.jpeg" alt="Limão Siciliano">
+        <h2>Limão Siciliano</h2>
+        <p>R$ 2,00</p>
+        <button onclick="adicionarAoCarrinho('Limão Siciliano', 2.00)">Adicionar ao Carrinho</button>
+    </div>
+    <div class="produto">
+        <img src="imagem/download (1).jpeg" alt="Limão Taiti">
+        <h2>Limão Taiti</h2>
+        <p>R$ 1,50</p>
+        <button onclick="adicionarAoCarrinho('Limão Taiti', 1.50)">Adicionar ao Carrinho</button>
+    </div>
+    <div class="produto">
+        <img src="imagem/download (2).jpeg" alt="Limão Cravo">
+        <h2>Limão Cravo</h2>
+        <p>R$ 3,00</p>
+        <button onclick="adicionarAoCarrinho('Limão Cravo', 3.00)">Adicionar ao Carrinho</button>
+    </div>
+    <button onclick="mostrarPagina('pagamento')">Ir para o pagamento</button>
+</div>
+
+<div id="paginaPagamento" class="hidden">
+    <h1>Finalize sua Compra</h1>
+    <div id="carrinho">
+        <h2>Seu Carrinho de Compras</h2>
+        <ul id="listaCarrinho">
+            <!-- Itens do carrinho serão inseridos dinamicamente aqui -->
+        </ul>
+    </div>
+    <form id="formPedido" action="pedido_concluido.html" method="POST">
+        <label for="nome">Nome:</label><br>
+        <input type="text" id="nome" name="nome" required><br><br>
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" name="email" required><br><br>
+        <label for="endereco">Endereço de Entrega:</label><br>
+        <textarea id="endereco" name="endereco" required></textarea><br><br>
+        <input type="submit" value="Concluir Pedido">
+    </form>
+</div>
+
+<script src="script.js" defer></script>
+
+<script>
+    let carrinho = [];
+
+    function adicionarAoCarrinho(nome, preco) {
+        carrinho.push({ nome: nome, preco: preco });
+        atualizarCarrinho();
+    }
+
+    function removerDoCarrinho(index) {
+        carrinho.splice(index, 1);
+        atualizarCarrinho();
+    }
+
+    function atualizarCarrinho() {
+        let listaCarrinho = document.getElementById('listaCarrinho');
+        listaCarrinho.innerHTML = '';
+
+        carrinho.forEach((item, index) => {
+            let li = document.createElement('li');
+            li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)}`;
+
+            let button = document.createElement('button');
+            button.textContent = 'Remover';
+            button.onclick = function() {
+                removerDoCarrinho(index);
+            };
+
+            li.appendChild(button);
+            listaCarrinho.appendChild(li);
+        });
+    }
+
+    function mostrarPagina(pagina) {
+        document.getElementById('paginaInicial').classList.add('hidden');
+        document.getElementById('paginaLoja').classList.add('hidden');
+        document.getElementById('paginaPagamento').classList.add('hidden');
+
+        document.getElementById('pagina' + pagina.charAt(0).toUpperCase() + pagina.slice(1)).classList.remove('hidden');
+
+        if (pagina === 'pagamento') {
+            atualizarCarrinho(); // Atualiza o carrinho ao mostrar a página de pagamento
+        }
+    }
+
+    document.getElementById('formPedido').addEventListener('submit', function(event) {
+        event.preventDefault(); // Impede o envio padrão do formulário
+
+        // Aqui você pode enviar os dados do formulário para a página de pedido concluído
+        // Por exemplo, você pode redirecionar para a página de pedido concluído
+        window.location.href = 'pedido_concluido.html';
+    });
+</script>
+
+</body>
+</html>
